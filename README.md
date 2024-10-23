@@ -33,6 +33,11 @@ A simple web-based chat assistant built with HTML, CSS, and JavaScript. This app
 
 To run this application locally, follow these steps:
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/yourusername/chat-assistant.git
+1. Help & Business (Telegram): https://t.me/You_B_Tech_Coding
+2. Help & Business (Instagram): https://instagram.com/you_b_tech
+
+Follow & Chat with us:
+- Telegram Channel → https://t.me/You_B_Tech
+- YouTube → https://youtube.com/@You_B_Tech
+- Instagram → https://instagram.com/you_b_tech
+- Wedsite → https://youbtech.xyz
