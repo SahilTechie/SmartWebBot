@@ -6,31 +6,84 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Assistant</title>
+    <title>SMARTWEBBOT</title>
     <style>
+        /* Background gradient animation */
         body {
             margin: 0;
             font-family: Roboto, sans-serif;
-            background-color: #FAFAFA; /* Light background */
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #6200ea);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             color: #212121;
         }
-        .header {
-            background-color: #6200EA; /* Purple 500 */
-            color: white;
-            padding: 16px;
-            text-align: center;
-            font-size: 24px;
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
+
+        /* Robot header */
+        .header {
+            background: transparent;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: white;
+        }
+        .robot-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        /* Floating robot + name */
+        .robot-float {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: float 3s ease-in-out infinite;
+        }
+        .robot-avatar {
+            width: 80px;
+            height: 80px;
+        }
+        .bot-name {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 5px;
+            text-shadow: 0 0 5px #ffffff, 0 0 10px #6200ea, 0 0 20px #6200ea;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #ffffff, 0 0 10px #6200ea, 0 0 20px #6200ea;
+            }
+            to {
+                text-shadow: 0 0 10px #ffffff, 0 0 20px #7b4dff, 0 0 30px #7b4dff;
+            }
+        }
+
+        /* Chat container glass effect */
         .container {
             display: flex;
             flex-direction: column;
             height: 100vh;
             max-width: 400px;
             margin: auto;
-            border: 1px solid #E0E0E0;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            background-color: white;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
         .chatbox {
             flex: 1;
@@ -44,52 +97,48 @@
             padding: 10px 15px;
             border-radius: 20px;
             max-width: 80%;
-            word-wrap: break-word; /* Ensure long words break */
-            animation: fadeIn 0.3s ease forwards; /* Apply fade-in animation */
+            word-wrap: break-word;
+            animation: fadeIn 0.3s ease forwards;
         }
         .user-message {
             align-self: flex-end;
-            background-color: #6200EA; /* Purple 500 */
+            background-color: #6200EA;
             color: white;
             border-top-left-radius: 0;
         }
         .assistant-message {
             align-self: flex-start;
-            background-color: #E0E0E0; /* Light grey */
+            background-color: #E0E0E0;
             color: #212121;
             border-top-right-radius: 0;
         }
         .input-area {
             padding: 10px;
-            border-top: 1px solid #E0E0E0;
-            background-color: #F5F5F5; /* Slightly darker grey */
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: transparent;
             display: flex;
             align-items: center;
         }
         .input-area input {
             flex: 1;
             padding: 10px;
-            border: 1px solid #E0E0E0;
+            border: none;
             border-radius: 20px;
             margin-right: 10px;
-            transition: border-color 0.3s;
-        }
-        .input-area input:focus {
             outline: none;
-            border-color: #6200EA; /* Purple 500 */
         }
         .input-area button {
             padding: 10px 15px;
             border: none;
             border-radius: 20px;
-            background-color: #6200EA; /* Purple 500 */
+            background-color: #6200EA;
             color: white;
             cursor: pointer;
             display: flex;
             align-items: center;
         }
         .input-area button:hover {
-            background-color: #3700B3; /* Darker Purple 700 */
+            background-color: #3700B3;
         }
         .input-area .material-icons {
             margin-right: 5px;
@@ -100,31 +149,32 @@
             width: 24px;
             height: 24px;
             border-radius: 50%;
-            border-top-color: #6200EA; /* Purple 500 */
+            border-top-color: #6200EA;
             animation: spin 1s linear infinite;
         }
         @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <div class="header">Chat Assistant</div>
+
+    <!-- Robot Header -->
+    <div class="header">
+        <div class="robot-container">
+            <div class="robot-float">
+                <img src="Robot.png" alt="Robot" class="robot-avatar">
+                <div class="bot-name">SMARTWEBBOT</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Container -->
     <div class="container">
         <div id="chatbox" class="chatbox"></div>
         <div class="input-area">
@@ -134,7 +184,10 @@
             </button>
         </div>
     </div>
-
+    <br>
+    <br>
+    <br>
+    
     <script>
         const sendButton = document.getElementById("sendButton");
         const chatInput = document.getElementById('chatInput');
@@ -145,13 +198,12 @@
             msgElem.textContent = message;
             msgElem.className = `chat-message ${isUser ? 'user-message' : 'assistant-message'}`;
             chatbox.appendChild(msgElem);
-            chatbox.scrollTop = chatbox.scrollHeight; // Scroll to the bottom
+            chatbox.scrollTop = chatbox.scrollHeight;
             
-            // For assistant messages, add a slight delay before displaying
             if (!isUser) {
-                msgElem.style.opacity = 0; // Start with opacity 0
-                await new Promise(resolve => setTimeout(resolve, 300)); // Delay
-                msgElem.style.opacity = 1; // Fade in
+                msgElem.style.opacity = 0;
+                await new Promise(resolve => setTimeout(resolve, 300));
+                msgElem.style.opacity = 1;
             }
         }
 
@@ -174,7 +226,8 @@
 
         chatInput.focus();
 
-        sendButton.addEventListener('click', async () => {
+        // Function to handle sending messages (used by both button click and Enter key)
+        async function sendMessage() {
             const message = chatInput.value.trim();
             if (!message) return;
 
@@ -194,9 +247,20 @@
                 } 
             } catch (error) {
                 console.error('Error:', error);
-displayMessage('An error occurred. Please try again.', false);
-}
-});
-</script> <
-/body> <
-/html>
+                displayMessage('An error occurred. Please try again.', false);
+            }
+        }
+
+        // Mouse click event listener for send button
+        sendButton.addEventListener('click', sendMessage);
+
+        // Keyboard event listener for Enter key on input field
+        chatInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent form submission if inside a form
+                sendMessage();
+            }
+        });
+    </script> 
+</body> 
+</html>
