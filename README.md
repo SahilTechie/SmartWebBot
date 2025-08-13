@@ -3,6 +3,10 @@
 
 SmartWebBot is an advanced AI-powered chatbot web application designed to provide intelligent, interactive, and automated responses to user queries. This project demonstrates the integration of modern web technologies with AI to deliver a seamless conversational experience.
 
+
+🔗 **Live Demo**: [Click to view](https://smart-web-bot.vercel.app/)
+
+
 ## Features
 - **AI Chatbot:** Engages users in natural language conversations and provides relevant answers.
 - **Customizable Bot:** Easily modify bot responses and behavior to suit your needs.
